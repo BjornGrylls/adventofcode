@@ -33,14 +33,12 @@ for ($i = $indexStacks + 2; $i -lt $in.Count; $i++) {
     $from = $in[$i].Split(" ")[3]
     $to = $in[$i].Split(" ")[5]
 
-    for ($j = 0; $j -lt $move; $j++) {
-        # Fjern sidste
-        $last = $stacks[$from][$stacks[$from].Length - 1]
-        $stacks[$from] = $stacks[$from].Substring(0, $stacks[$from].Length - 1)
+    # Fjern sidste
+    $last = $stacks[$from].Substring($stacks[$from].Length - $move, $move )
+    $stacks[$from] = $stacks[$from].Substring(0, $stacks[$from].Length - $move)
  
-        #Tilføj til ny stack
-        $stacks[$to] += $last
-    }
+    #Tilføj til ny stack
+    $stacks[$to] += $last
 
 }
 
@@ -48,4 +46,4 @@ $res = "";
 foreach ($stack in $stacks) {
     $res += $stack[$stack.Length - 1]
 }
-$res.Substring(1, $res.Length-1)
+$res.Substring(1, $res.Length - 1)
