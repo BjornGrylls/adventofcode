@@ -16,4 +16,4 @@ foreach ($line in $in) {
     }
 }
 
-$pairs
+$pairs # 537 er for højt

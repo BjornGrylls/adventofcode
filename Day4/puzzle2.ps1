@@ -23,4 +23,4 @@ foreach ($line in $in) {
     }
 }
 
-$pairs # 537 er for højt
+$pairs
