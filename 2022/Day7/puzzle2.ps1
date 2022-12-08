@@ -54,8 +54,6 @@ $folders
 # Find foldere mindre end 100.000
 $folders.Values | where { $_ -lt 100000 } | Measure-Object -Sum
 
-# 2956464 er for lavt
-
 $missingSpace = 70000000 - ($folders.Values | sort -Descending | select -First 1) - 30000000
 $missingSpace *= -1
 $folders.Values | where { $_ -ge $missingSpace } | sort | select -First 1
