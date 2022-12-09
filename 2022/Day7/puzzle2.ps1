@@ -1,4 +1,4 @@
-$in = Get-Content .\input.txt
+$in = Get-Content .\2022\Day7\input.txt
 
 $folders = @{}
 
