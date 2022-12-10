@@ -4,8 +4,6 @@ $register = 1
 $cycle = 1
 $CRT = 0
 
-$signalStrengths = 0
-
 $executing = $false
 for ($i = 0; $i -lt $in.Count; $i++) {
 
@@ -33,8 +31,3 @@ for ($i = 0; $i -lt $in.Count; $i++) {
 
     $cycle += 1
 }
-
-
-Write-Host "Register is $register"
-Write-Host "Cycle is $cycle"
-$signalStrengths
