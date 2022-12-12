@@ -67,20 +67,25 @@ for ($i = 0; $i -lt $in.Count; $i += 7) { # Skip 7 to start next monkey
     $monkeys += $monkey
 }
 
+$LALlcm = $monkeys.testDivisbleBy -join '*' | Invoke-Expression
+
 # Run 20 rounds
-for ($round = 1; $round -le 20; $round++) {
+for ($round = 1; $round -le 10000; $round++) {
+    $round
     for ($monkeyIndex = 0; $monkeyIndex -lt $monkeys.Count; $monkeyIndex++) {
         foreach ($item in $monkeys[$monkeyIndex].startingItems) {
             $inspectedWorryLevel = $monkeys[$monkeyIndex].Operation($item)
-            $inspectedWorryLevel = [math]::Floor($inspectedWorryLevel / 3)
+            #$inspectedWorryLevel = [math]::Floor($inspectedWorryLevel / 3)
             
+            $inspectedWorryLevel = $inspectedWorryLevel % $LALlcm
+
             $recipientIndex = $monkeys[$monkeyIndex].Test($inspectedWorryLevel)
             $monkeys[$recipientIndex].startingItems += $inspectedWorryLevel
         }
         $monkeys[$monkeyIndex].startingItems = [int[]]@() # Clean current monkeys items
     }
 }
-
+$monkeys.inspectedItems
 # Print result
 $res = $monkeys.inspectedItems | sort -Descending | select -First 2
-Write-Host "Level of monkey business is" ($res[0] * $res[1])
+Write-Host "Level of monkey business is" ($res[0] * $res[1]) # 21214942060 too low
